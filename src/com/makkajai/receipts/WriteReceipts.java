@@ -5,17 +5,27 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+import com.makkajai.cart.Cart;
 import com.makkajai.tax.TaxCalculator;
 
 public class WriteReceipts extends Receipts {
     private List<TaxCalculator> taxCalculators;
+    private List<Cart> carts;
 
-    private ReadFileData readFileData;
-
-    public WriteReceipts(String directoryPath, List<TaxCalculator> taxCalculators) {
+    public WriteReceipts(String directoryPath, List<TaxCalculator> taxCalculators, List<Cart> carts) {
         super(directoryPath);
+        this.carts = carts;
         this.taxCalculators = taxCalculators;
-        this.readFileData = new ReadFileData();
+    }
+
+    public String cartProductsReceipt(Cart cart) {
+        StringBuilder productsReceipt = new StringBuilder("");
+        cart.getCartProducts().forEach(product -> {
+            productsReceipt.append(product.getQuantity() + " ");
+            productsReceipt.append(product.getName() + ": ");
+            productsReceipt.append(product.getPrice() + "\n");
+        });
+        return productsReceipt.toString();
     }
 
     public void writeReceipts() {
@@ -27,7 +37,7 @@ public class WriteReceipts extends Receipts {
                 final String calculations = "Sales Taxes: " + " "
                         + taxCalculators.get(i).getTotalTax() + "\n" + "Sales Total: " + " "
                         + taxCalculators.get(i).getGrandTotal();
-                String productsReceipt = readFileData.readFileData(file.getPath()) + calculations;
+                String productsReceipt = this.cartProductsReceipt(this.carts.get(i)) + calculations;
                 try {
                     final FileWriter fileWriter = new FileWriter(
                             super.getPathForOutput(file),
