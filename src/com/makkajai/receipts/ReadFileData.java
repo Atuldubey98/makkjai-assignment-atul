@@ -9,17 +9,11 @@ public class ReadFileData {
         StringBuilder content = new StringBuilder();
         try (BufferedReader buffer = new BufferedReader(
                 new FileReader(pathname))) {
-
             String str;
-
             while ((str = buffer.readLine()) != null) {
-
                 content.append(str).append("\n");
             }
-        }
-
-        catch (IOException e) {
-
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return content.toString();

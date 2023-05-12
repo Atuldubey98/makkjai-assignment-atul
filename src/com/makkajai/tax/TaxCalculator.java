@@ -6,6 +6,15 @@ import com.makkajai.cart.Product;
 
 public class TaxCalculator {
     private double totalTax = 0;
+    private List<Product> products;
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
 
     public double getTotalTax() {
         return totalTax;
@@ -36,9 +45,9 @@ public class TaxCalculator {
     }
 
     public TaxCalculator(List<Product> products) {
-
+        this.products = products;
         for (Product product : products) {
-            List<Tax> taxes = product.getTaxes();
+            final List<Tax> taxes = product.getTaxes();
             final double productTotal = product.getPrice() * product.getQuantity();
             double totalTax = 0;
             for (Tax tax : taxes) {
