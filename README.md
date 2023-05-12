@@ -1,6 +1,3 @@
-## Getting Started
-
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
 
 ## Folder Structure
 
@@ -16,3 +13,9 @@ Meanwhile, the compiled output files will be generated in the `bin` folder by de
 ## Dependency Management
 
 The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+
+## How to test the project
+
+Default location of assets directory : "/assets"
+It can be changed in App.java file. The variable name is DIRECTORY_PATH.
+The project was built in vscode. Place indivisual txt files in the assets directory. Now run the project using vscode by pressing F5. The outputs with the tax and grand total will be generated in the output directory of the of the folder.

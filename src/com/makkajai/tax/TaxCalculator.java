@@ -41,7 +41,6 @@ public class TaxCalculator {
             List<Tax> taxes = product.getTaxes();
             final double productTotal = product.getPrice() * product.getQuantity();
             taxes.forEach(tax -> {
-
                 this.totalTax += tax.calculate(productTotal);
             });
             this.totalTax = this.roundOffTotalToZeroFive(this.totalTax);
