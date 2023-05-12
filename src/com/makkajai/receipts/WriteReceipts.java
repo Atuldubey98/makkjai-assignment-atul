@@ -23,7 +23,7 @@ public class WriteReceipts extends Receipts {
         cart.getCartProducts().forEach(product -> {
             productsReceipt.append(product.getQuantity() + " ");
             productsReceipt.append(product.getName() + ": ");
-            productsReceipt.append(product.getTotalAfterTax() + "\n");
+            productsReceipt.append(String.format("%.2f", product.getTotalAfterTax()) + "\n");
         });
         return productsReceipt.toString();
     }
@@ -35,7 +35,7 @@ public class WriteReceipts extends Receipts {
         for (File file : directoryFiles) {
             if (file.isFile() && file.getName().endsWith(".txt")) {
                 final String calculations = "Sales Taxes: " + " "
-                        + taxCalculators.get(i).getTotalTax() + "\n" + "Sales Total: " + " "
+                        + String.format("%.2f", taxCalculators.get(i).getTotalTax()) + "\n" + "Sales Total: " + " "
                         + taxCalculators.get(i).getGrandTotal();
                 String productsReceipt = this.cartProductsReceipt(this.carts.get(i)) + calculations;
                 try {
