@@ -23,7 +23,7 @@ public class WriteReceipts extends Receipts {
         cart.getCartProducts().forEach(product -> {
             productsReceipt.append(product.getQuantity() + " ");
             productsReceipt.append(product.getName() + ": ");
-            productsReceipt.append(product.getPrice() + "\n");
+            productsReceipt.append(product.getTotalAfterTax() + "\n");
         });
         return productsReceipt.toString();
     }

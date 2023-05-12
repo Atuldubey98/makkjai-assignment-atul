@@ -40,17 +40,21 @@ public class TaxCalculator {
         for (Product product : products) {
             List<Tax> taxes = product.getTaxes();
             final double productTotal = product.getPrice() * product.getQuantity();
-            taxes.forEach(tax -> {
+            double totalTax = 0;
+            for (Tax tax : taxes) {
                 this.totalTax += tax.calculate(productTotal);
-            });
+                totalTax += tax.calculate(productTotal);
+            }
+            final double tax = totalTax == 0 ? 0 : roundOffTotalToZeroFive(totalTax);
+            product.setTotalAfterTax(roundOffTotal(tax + product.getPrice()));
             this.totalTax = this.roundOffTotalToZeroFive(this.totalTax);
             this.total += productTotal;
         }
-        this.grandTotal = roundOffTotal();
+        this.grandTotal = roundOffTotal(this.total + this.totalTax);
     }
 
-    private double roundOffTotal() {
-        return Math.round((this.total + this.totalTax) * 100.0) / 100.0;
+    private double roundOffTotal(double totalAmount) {
+        return Math.round(totalAmount * 100.0) / 100.0;
     }
 
     public double roundOffTotalToZeroFive(double amount) {

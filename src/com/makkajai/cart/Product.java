@@ -12,6 +12,15 @@ public class Product {
     private static final List<String> EXEMPTED_PRODUCTS = List.of("chocolate", "pill", "book");
     private double price;
     private String receiptName;
+    private double totalAfterTax;
+
+    public double getTotalAfterTax() {
+        return totalAfterTax;
+    }
+
+    public void setTotalAfterTax(double totalAfterTax) {
+        this.totalAfterTax = totalAfterTax;
+    }
 
     public String getReceiptName() {
         return receiptName;

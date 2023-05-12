@@ -10,7 +10,7 @@ public class CustomDutyTaxTest {
     }
 
     @Test
-    private void testCustomDutyTax() {
+    public void testCustomDutyTax() {
         
     }
 }
