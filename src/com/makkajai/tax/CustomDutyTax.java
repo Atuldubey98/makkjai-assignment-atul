@@ -7,5 +7,4 @@ public class CustomDutyTax implements Tax {
     public double calculate(double price) {
         return price * TAX_PERCENTAGE;
     }
-
 }
