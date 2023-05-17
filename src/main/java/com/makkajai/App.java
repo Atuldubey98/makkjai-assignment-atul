@@ -1,7 +1,9 @@
 package com.makkajai;
+
 import java.util.List;
 
 import com.makkajai.console.ReadConsole;
+import com.makkajai.console.WriteReceipt;
 import com.makkajai.products.Cart;
 import com.makkajai.tax.TaxCalculator;
 
@@ -17,8 +19,8 @@ public class App {
             Cart cart = new Cart(input);
             TaxCalculator taxCalculator = new TaxCalculator();
             taxCalculator.calculateTax(cart);
-            System.out.println(cart);
-            System.out.println(taxCalculator);
+            WriteReceipt writeReceipt = new WriteReceipt(cart, taxCalculator);
+            writeReceipt.outputReceipt();
         }
     }
 }

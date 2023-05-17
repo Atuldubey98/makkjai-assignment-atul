@@ -1,10 +1,13 @@
 package com.makkajai.products;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.makkajai.tax.BasicSalesTax;
+import com.makkajai.tax.CustomDutyTax;
 import com.makkajai.tax.Tax;
 
-public abstract class Product {
+public class Product {
     private String receiptName;
     private String productName;
     private double price;
@@ -24,7 +27,15 @@ public abstract class Product {
         return isImport;
     }
 
-    public abstract List<Tax> getTaxes();
+    public List<Tax> getTaxes() {
+        List<Tax> taxes = new ArrayList<>();
+        if (!BasicSalesTax.EXEMPTED_PRODUCTS.stream().anyMatch((item) -> this.receiptName.contains(item))) 
+            taxes.add(new BasicSalesTax());
+        if (isImport) {
+            taxes.add(new CustomDutyTax());
+        }
+        return taxes;
+    }
 
     public Product(String receiptName) {
         this.receiptName = receiptName;

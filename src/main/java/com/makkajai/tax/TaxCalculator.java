@@ -44,12 +44,5 @@ public class TaxCalculator {
         }
         this.grandTotal += this.totalTax;
         this.grandTotal = roundOffTotal(this.grandTotal);
-    }
-
-    @Override
-    public String toString() {
-        return "Sales Taxes: " + " "
-                + String.format("%.2f", this.totalTax) + "\n" + "Sales Total: " + " "
-                + String.format("%.2f", this.grandTotal) + "\n";
-    }
+    }   
 }
