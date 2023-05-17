@@ -8,7 +8,7 @@ import com.makkajai.tax.CustomDutyTax;
 import com.makkajai.tax.Tax;
 
 public class Product {
-    private String receiptName;
+
     private String productName;
     private double price;
     private int quantity;
@@ -29,7 +29,7 @@ public class Product {
 
     public List<Tax> getTaxes() {
         List<Tax> taxes = new ArrayList<>();
-        if (!BasicSalesTax.EXEMPTED_PRODUCTS.stream().anyMatch((item) -> this.receiptName.contains(item))) 
+        if (!BasicSalesTax.EXEMPTED_PRODUCTS.stream().anyMatch((item) -> this.productName.contains(item)))
             taxes.add(new BasicSalesTax());
         if (isImport) {
             taxes.add(new CustomDutyTax());
@@ -37,30 +37,11 @@ public class Product {
         return taxes;
     }
 
-    public Product(String receiptName) {
-        this.receiptName = receiptName;
-        this.initilizeProduct(receiptName);
-    }
-
-    public String getReceiptName() {
-        return receiptName;
-    }
-
-    public void initilizeProduct(String receiptName) {
-        String priceStr = "";
-        int i = this.receiptName.length() - 1;
-        while (i >= 0 && this.receiptName.charAt(i) != ' ')
-            priceStr = this.receiptName.charAt(i--) + priceStr;
-
-        this.price = Double.parseDouble(priceStr);
-        StringBuilder str = new StringBuilder("");
-        int k = 0;
-        while (k < this.receiptName.length() && this.receiptName.charAt(k) != ' ') {
-            str.append(this.receiptName.charAt(k++));
-        }
-        this.quantity = Integer.parseInt(str.toString());
-        this.productName = this.receiptName.substring(k, i - 2).trim();
-        this.isImport = this.productName.contains("import");
+    public Product(String productName, double price, int quantity, boolean isImport) {
+        this.productName = productName;
+        this.price = price;
+        this.quantity = quantity;
+        this.isImport = isImport;
     }
 
     public String getProductName() {
