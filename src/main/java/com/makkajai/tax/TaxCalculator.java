@@ -18,11 +18,8 @@ public class TaxCalculator {
     }
 
     private double getProductTax(List<Tax> taxes, double total) {
-        double productTax = 0;
-        for (Tax tax : taxes) {
-            productTax += tax.calculate(total);
-        }
-        return productTax;
+        return taxes.stream().map((tax) -> tax.calculate(total)).reduce(0.0,
+                (element1, element2) -> element1 + element2);
     }
 
     private double roundOffTotal(double totalAmount) {
@@ -44,5 +41,5 @@ public class TaxCalculator {
         }
         this.grandTotal += this.totalTax;
         this.grandTotal = roundOffTotal(this.grandTotal);
-    }   
+    }
 }
