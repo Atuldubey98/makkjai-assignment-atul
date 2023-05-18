@@ -38,7 +38,7 @@ public class ReceiptProductMapper {
         this.productName = this.receiptName.substring(this.k, this.i - 2).trim();
     }
 
-    public Product mapDTOToProduct() {
+    public Product mapToProduct() {
         return new Product(this.productName, this.price, this.quantity, this.isImport);
     }
 }

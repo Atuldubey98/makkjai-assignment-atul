@@ -21,7 +21,7 @@ public class Cart {
 
     public Cart(String productsReceipts) {
         this.products = Arrays.stream(productsReceipts.split("\n")).map(String::trim)
-                .map(receiptName -> new ReceiptProductMapper(receiptName).mapDTOToProduct())
+                .map(receiptName -> new ReceiptProductMapper(receiptName).mapToProduct())
                 .collect(Collectors.toList());
     }
 }
