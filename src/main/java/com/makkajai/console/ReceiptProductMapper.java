@@ -1,4 +1,6 @@
-package com.makkajai.products;
+package com.makkajai.console;
+
+import com.makkajai.products.Product;
 
 public class ReceiptProductMapper {
     private int i;
